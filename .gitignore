@@ -2,3 +2,6 @@ ter-homeworks
 
 #yc cloud service key
 *authorized_key.json
+
+#allowed
+!ter-homeworks/03/src/*
