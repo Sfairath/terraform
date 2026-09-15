@@ -1,0 +1,14 @@
+[count_vms]
+
+%{~ for i in count_vms ~}
+${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]} fqdn=${i["hostname"]}
+%{~ endfor ~}
+
+[foreach_vms]
+
+%{~ for i in foreach_vms ~}
+${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]} fqdn=${i["hostname"]}
+%{~ endfor ~}
+
+[storage]
+${storage["name"]}   ansible_host=${storage["network_interface"][0]["nat_ip_address"]} fqdn=${storage["hostname"]}
