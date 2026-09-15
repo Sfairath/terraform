@@ -1,5 +1,10 @@
 #homeworks
-ter-homeworks/
+ter-homeworks/*
+
+#allowed
+!ter-homeworks/03/
+!ter-homeworks/03/src/
+!ter-homeworks/03/src/**
 
 # Local .terraform directories and files
 **/.terraform/*
@@ -21,6 +26,3 @@ tfplan
 
 #yc cloud service key
 *authorized_key.json
-
-#allowed
-!ter-homeworks/03/src/
