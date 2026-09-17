@@ -1,3 +1,25 @@
+#web variables
+variable "vm_web_name" {
+  type = string
+  default = "web" #"netology-develop-platform-web"  
+}
+
+variable "vm_web_platform" {
+  type = string
+  default = "standard-v3"
+}
+
+variable "vpc_name" {
+  type        = string
+  default     = "develop"
+  description = "VPC network & subnet name"
+}
+
+variable "subnet_name" {
+  type = string
+  default = "develop"
+}
+
 #db variables
 variable "vm_db_name" {
   type = string
@@ -9,6 +31,20 @@ variable "vm_db_platform" {
   default = "standard-v3"
 }
 
+variable "db_subnet" {
+  type = string
+  default = "db_develop"
+}
+
+variable "vm_db_zone" {
+  type = string
+  default = "ru-central1-b"
+}
+
+variable "db_cidr" {
+  type = list(string)
+  default =  ["10.0.2.0/24"]
+}
 # variable "vm_db_cores" {
 #   type = number
 #   default = 2
@@ -24,27 +60,9 @@ variable "vm_db_platform" {
 #   default = 20
 # }
 
-resource "yandex_compute_instance" "db" {
-  name        = local.vm_db_name
-  platform_id = var.vm_db_platform
-  resources {
-    cores         = var.vms_resources["db"].cores
-    memory        = var.vms_resources["db"].ram
-    core_fraction = var.vms_resources["db"].core_fraction
-  }
-  boot_disk {
-    initialize_params {
-      image_id = data.yandex_compute_image.ubuntu.image_id
-    }
-  }
-  scheduling_policy {
-    preemptible = true
-  }
-  network_interface {
-    subnet_id = yandex_vpc_subnet.develop.id
-    nat       = true
-  }
-
-  metadata = var.vm_metadata["default"]
-
+resource "yandex_vpc_subnet" "db_develop" {
+  name           = var.db_subnet
+  zone           = var.vm_db_zone
+  network_id     = yandex_vpc_network.develop.id
+  v4_cidr_blocks = var.db_cidr
 }

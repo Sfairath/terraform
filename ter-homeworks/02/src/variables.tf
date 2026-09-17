@@ -23,13 +23,6 @@ variable "default_cidr" {
   description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
 }
 
-variable "vpc_name" {
-  type        = string
-  default     = "develop"
-  description = "VPC network & subnet name"
-}
-
-
 ###ssh vars
 
 # variable "vms_ssh_root_key" {
@@ -42,21 +35,6 @@ variable "vpc_name" {
 variable "image_family" {
   type = string
   default = "ubuntu-2004-lts"
-}
-
-variable "subnet_name" {
-  type = string
-  default = "develop"
-}
-
-variable "vm_web_name" {
-  type = string
-  default = "web" #"netology-develop-platform-web"  
-}
-
-variable "vm_web_platform" {
-  type = string
-  default = "standard-v3"
 }
 
 # variable "vm_web_cores" {
@@ -90,7 +68,7 @@ variable "vms_resources" {
 
     db = {
       cores = 2
-      ram = 1
+      ram = 2
       core_fraction = 20
     }
   }
