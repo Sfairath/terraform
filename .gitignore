@@ -1,7 +1,11 @@
 #homeworks
 ter-homeworks/*
+ter-homeworks/*/demo/
 
 #allowed
+!ter-homeworks/02/
+!ter-homeworks/02/src/
+!ter-homeworks/02/src/**
 !ter-homeworks/03/
 !ter-homeworks/03/src/
 !ter-homeworks/03/src/**
